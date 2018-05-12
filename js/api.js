@@ -1,42 +1,35 @@
 $(document).ready(() => {
-	const ENDPOINT = "http://localhost:8080";
+	const ENDPOINT = "http://localhost:8080/tasks";
 
 	function getAllTasks(cb) {
-		$.getJSON(`${ENDPOINT}/tasks`,res => cb && cb(res));
+		$.getJSON(`${ENDPOINT}`, res => cb && cb(res));
 	}
 
-	function getTask(id, cb){
-		$.getJSON(`${ENDPOINT}/tasks/${id}`, res => cb && cb(res));
+	function getTask(id, cb) {
+		$.getJSON(`${ENDPOINT}/${id}`, res => cb && cb(res));
 	}
 
-	function saveTask(task, cb){
-		if (task.id) {
-			return updateTask(task.id, task, cb);
-		}
-		return insertTask(task, cb);
-	}
-
-	function insertTask(task, cb){
+	function insertTask(task, cb) {
 		$.ajax({
 			type: "POST",
-			url: `${ENDPOINT}/tasks`,
+			url: `${ENDPOINT}`,
 			data: JSON.stringify(task),
 			success: res => cb && cb(res),
 			dataType: "json"
 		});
 	}
 
-	function updateTask(id, task, cb){
+	function updateTask(id, task, cb) {
 		$.ajax({
-			type: "POST",
-			url: `${ENDPOINT}/tasks/${id}`,
+			type: "PUT",
+			url: `${ENDPOINT}/${id}`,
 			data: JSON.stringify(task),
 			success: res => cb && cb(res),
 			dataType: "json"
 		});
 	}
 
-	function deleteTask(id, cb){
+	function deleteTask(id, cb) {
 		$.ajax({
 			type: "DELETE",
 			url: `${ENDPOINT}/${id}`,
@@ -45,13 +38,29 @@ $(document).ready(() => {
 		});
 	}
 
-	/*function runTests() {
-		getAllTasks(res => console.log("ALL TASKS\n",JSON.stringify(res)));
-		saveTask({description: "test Task"}, res => console.log("SAVED TASK\n",JSON.stringify(res)));
+	function runTests() {
+		getAllTasks(res => console.log("GET ALL TASKS\n", JSON.stringify(res)));
+    
+		insertTask({
+			description: "test Task"
+		}, res => console.log("INSERT TASK\n", JSON.stringify(res)));
 
-		getAllTasks(res => getTask(res[0].id), "SINGLE TASK"+ res[0].id ",JSON.stringify(res));
+		getAllTasks(res => getTask(res[0].id, r => console.log(`GET SINGLE TASK ${res[0].id}\n`, JSON.stringify(r))));
 
+		insertTask({
+			description: "to be edited Task"
+		}, res => {
+			res.description = "edited";
+			updateTask(res.id, res, r => console.log(`UPDATE SINGLE TASK ${res.id}\n`, JSON.stringify(r)));
+		});
+
+		insertTask({
+				description: "to be deleted Task"
+			}, res =>
+			deleteTask(res.id, console.log(`DELETE TASK ${res.id}\n`, JSON.stringify(res)))
+		);
 	}
 
-	runTests();*/
+	// Runs tests. Open ../test.html and check console output for results. If no errors occur, the tests pass.
+	runTests();
 });
