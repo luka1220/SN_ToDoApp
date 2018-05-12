@@ -9,22 +9,25 @@ ReactDOM.render(
 var todosList = [];
 var headerOfPage, mainArea;
 
-
 document.addEventListener("DOMContentLoaded", function () {
 	headerOfPage = document.getElementById("HeaderOfPage"); 
 	mainArea = document.querySelector("main");
+	document.querySelector("li.active").className = "";
 
     insertTemplate(location.hash.trim().substr(1));
 
 });
 
 window.addEventListener("hashchange", function () {
+	console.log("hash changed"); 
+
     insertTemplate(location.hash.trim().substr(1));
 });
 
 function insertTemplate(strPage) {
     var templateContent;
 
+    var nav = document.querySelector(".nav"); 
     // Wenn strPage leer, weil kein Hash, dann Willkommen setzen
     strPage = strPage || "index";
 
@@ -32,23 +35,27 @@ function insertTemplate(strPage) {
 
     switch (strPage) {
     case "index":
-        templateContent = document.getElementById("TableModal").content;
+    	$("nav li:nth-child(1)").className = "active";
         headerOfPage.textContent = "Welcome to TODOs";
-        loadAllTodos(templateContent); 
+        templateContent = createAllTodos(); 
         break;
     case "demo":
+    	$("nav li:nth-child(2)").className = "active";
     	templateContent = document.getElementById("EditModal").content;
         headerOfPage.textContent = "Please Update you Task";
         break;
     case "add-todo":
+    	$("nav li:nth-child(3)").className = "active";
         templateContent = document.getElementById("AddModal").content;
         headerOfPage.textContent = "Add ToDo";
         break;
     case "impressum":
+    	$("nav li:nth-child(4)").className = "active";
         templateContent = document.getElementById("ImpressumModal").content;
         headerOfPage.textContent = "Impressum";
         break;
     default: //anderer Hash
+    	$("nav li:nth-child(1)").className = "active";
         templateContent = document.getElementById("TableModal").content;
         headerOfPage.textContent = "Welcome to TODOs";
         break;
@@ -69,4 +76,32 @@ function clearContentArea() {
     if (jumboTronButton.length > 0) {
         jumboTron.removeChild(jumboTronButton[0]);
     }*/
+}
+function loadAllTodos(){
+
+}
+function createAllTodos(){
+
+	loadAllTodos(); 
+
+	templateContent = document.getElementById("TableModal").content;
+	todosList.forEach(function(entry) {
+		templateContent.appendChild(buildToDo()); 
+	}); 
+
+	return templateContent; 
+
+}
+function buildToDo(todoObject){
+	var todoModal = document.getElementById("ToDoModal"); 
+	var row1 = todoModal.firstElementChild.querySelectorAll("td"); 
+	var row2 = todoModal.lastElementChild.querySelectorAll("td"); 
+	
+	row1[0].textContent = "1.";
+	row1[1].textContent = todoObject.content;
+	row2[0].firstElementChild.textContent = todoObject.deadline; 
+	row2[1].firstElementChild.firstElementChild.textContent = todoObject.prozentage; 
+	row2[1].querySelector("div").style.width=todoObject.prozentage; 
+
+	return document.importNode(todoModal, true);; 
 }
