@@ -105,3 +105,17 @@ function buildToDo(todoObject){
 
 	return document.importNode(todoModal, true);; 
 }
+
+function deleteToDo(argument) {
+	// body...
+
+}
+function updateToDoForm(argument) {
+	// body...
+}
+function addToDoForm(argument){
+	var formular = document.forms["addToDoF"];
+	var todoObject = {}; 
+
+	todoObject.content = document.getElementById("InputText"); 
+}
