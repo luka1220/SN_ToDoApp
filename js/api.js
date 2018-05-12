@@ -45,7 +45,7 @@ $(document).ready(() => {
 		});
 	}
 
-	function runTests() {
+	/*function runTests() {
 		getAllTasks(res => console.log("ALL TASKS\n",JSON.stringify(res)));
 		saveTask({description: "test Task"}, res => console.log("SAVED TASK\n",JSON.stringify(res)));
 
@@ -53,5 +53,5 @@ $(document).ready(() => {
 
 	}
 
-	runTests();
+	runTests();*/
 });
