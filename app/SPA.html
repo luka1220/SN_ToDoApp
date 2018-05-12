@@ -47,7 +47,7 @@
 							<template id="ToDoModal">
 							<div>
 							<tr>
-								<td rowspan="2">1.</td>
+								<td id="todoID" rowspan="2">1</td>
 								<td colspan="4">blah blah </td>
 							</tr>
 							<tr>
@@ -55,8 +55,8 @@
 								<td>
 									<div id="Prozent" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%; color: black"><span class="sr-only">40% abgeschlossen (Erfolg)</span>%40</div>
 								</td>
-								<td><a href="#demo" class="btn btn-xs btn-warning">Edit</a></td>
-								<td><button class="btn btn-xs btn-danger">Delete</button></td>
+								<td><a href="#demo" onclick="makeEdit(this)" class="btn btn-xs btn-warning">Edit</a></td>
+								<td><button onclick="deleteToDo(this)" class="btn btn-xs btn-danger">Delete</button></td>
 							</tr>
 							<div>
 							</template>
@@ -65,29 +65,29 @@
 					</table>
 				</template>
 
-				<template id="EditModal">
-					<form>
+				<template id="EditModal" >
+					<form if="editToDoF" name="0">
 						<label for="inputText">To edit:</label>
 						<textarea class="form-control" id="inputText"
 						maxlength="160" rows="4" required>Change your TODO here! You can edit everything, good luck!
 						</textarea>
-						<input type="date" name="deadline" value="2018-04-30" required/>
-						<input type="number" name="prozentage" value=20 step="5"
+						<input type="date" name="deadline" id="deadline" value="2018-04-30" required/>
+						<input type="number" id="progress" name="prozentage" value=20 step="5"
 						max="100" min="0" style="width: 60px" required/>
 						<label for="number">%OMA </label>
 						<input class="btn btn-warning" type="submit" value="Commit"
-						style="float: right" formAction="index.html"/>
+						style="float: right" onclick="updateToDoForm()" formAction="#index"/>
 					</form>
 				</template>
 
 				<template id="AddModal">
-					<form action="../api/todo" method="post">
+					<form id="addToDoF" action="#index">
 						<label for="inputText">TODO Discription:</label>
 						<textarea class="form-control" name="content" id="inputText" placeholder="Define your new TODO here"
 						maxlength="160" rows="4" required></textarea>
 						<label for="inputText">Deadline:</label>
 						<input type="date" name="deadline" id="deadline" min required/>
-						<input class="btn btn-success" type="submit" value="Submit"
+						<input class="btn btn-success" type="submit" onclick="addToDoForm()" formAction="#index" value="Submit"
 						style="float: right" /> <!--formAction="index.html"-->
 					</form>
 				</template>
@@ -107,6 +107,7 @@
 		<script src="../js/jquery-1.12.4.min.js"></script>
     	<script src="../js/bootstrap.min.js"></script>
     	<script src="../js/handleSPA.js"></script>
+    	<script src="../js/api.js"></script>
 
 	</body>
 </html>

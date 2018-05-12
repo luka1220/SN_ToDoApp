@@ -40,7 +40,7 @@ $(document).ready(() => {
 
 	function runTests() {
 		getAllTasks(res => console.log("GET ALL TASKS\n", JSON.stringify(res)));
-
+    
 		insertTask({
 			description: "test Task"
 		}, res => console.log("INSERT TASK\n", JSON.stringify(res)));
