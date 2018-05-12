@@ -31,7 +31,7 @@
 
 
 					<template id="TableModal">
-					<table class="table table-bordered">
+					<table class="table table-bordered" id="ToDoBody">
 						<thread>
 							<tr>
 								<td colspan="5">
@@ -43,26 +43,24 @@
 								<th colspan="5">TODOs</th>
 							</tr>
 						</thread>
-						<tbody id="ToDoBody">
-							<template id="ToDoModal">
-							<div>
+						
+					</table>
+				</template>
+				<template id="ToDoModal">
+						<tbody>
 							<tr>
 								<td id="todoID" rowspan="2">1</td>
-								<td colspan="4">blah blah </td>
+								<td id="description" colspan="4">blah blah </td>
 							</tr>
 							<tr>
 								<td><time></time></td>
 								<td>
-									<div id="Prozent" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%; color: black"><span class="sr-only">40% abgeschlossen (Erfolg)</span>%40</div>
+									<div id="Prozent" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%; color: black"><!--span class="sr-only">40% abgeschlossen (Erfolg)</span-->%40</div>
 								</td>
 								<td><a href="#demo" onclick="makeEdit(this)" class="btn btn-xs btn-warning">Edit</a></td>
 								<td><button onclick="deleteToDo(this)" class="btn btn-xs btn-danger">Delete</button></td>
 							</tr>
-							<div>
-							</template>
-							<!-- Ein Tamplate-->
 						</tbody>
-					</table>
 				</template>
 
 				<template id="EditModal" >

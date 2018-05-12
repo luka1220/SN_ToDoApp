@@ -53,8 +53,8 @@ function insertTemplate(strPage) {
     case "index":
     	$("nav li:nth-child(1)").className = "active";
         headerOfPage.textContent = "Welcome to TODOs"
-        templateContent = createAllTodos(); 
-        break;
+        loadAllTodos(); 
+        return;
     case "demo":
     	$("nav li:nth-child(2)").className = "active";
     	templateContent = document.getElementById("EditModal").content;
@@ -108,37 +108,40 @@ function setmakeEdit(){
 
 function loadAllTodos(){
 	getAllTasks(function(res){
+		console.log(typeof res); 
 		todosList = res; 
-		console.log(todosList); 
-	}); 
+		createAllTodos(); 
+		//console.log(todosList); 
+	});
 }
-
 
 
 function createAllTodos(){
 
-	loadAllTodos(); 
+	console.log("createAllTodos");
+	//loadAllTodos(); 
 
-	templateContent = document.getElementById("TableModal").content;
+	var templateContent = document.getElementById("TableModal").content;
+	console.log(todosList.length); 
+
 	todosList.forEach(function(entry) {
-		templateContent.appendChild(buildToDo()); 
+		
+		templateContent.querySelector("tbody").appendChild(buildToDo(entry)); 
 	}); 
-
-	return templateContent; 
-
+	mainArea.appendChild(document.importNode(templateContent, true));
 }
 function buildToDo(todoObject){
-	var todoModal = document.getElementById("ToDoModal").content; 
-	var row1 = todoModal.firstElementChild.querySelectorAll("td"); 
-	var row2 = todoModal.lastElementChild.querySelectorAll("td"); 
-	
-	row1[0].textContent = "1.";
-	row1[1].textContent = todoObject.discription;
-	row2[0].firstElementChild.textContent = todoObject.date; 
-	row2[1].firstElementChild.firstElementChild.textContent = todoObject.progress; 
-	row2[1].querySelector("div").style.width=todoObject.progress; 
+	console.log("buildToDo", todoObject); 
 
-	return document.importNode(todoModal, true);; 
+	var todoModal = document.getElementById("ToDoModal").content;
+	
+	todoModal.querySelector("#todoID").textContent = todoObject.id;
+	todoModal.querySelector("#description").textContent = todoObject.description;
+	todoModal.querySelector("time").textContent = todoObject.date;
+	todoModal.querySelector("div").textContent = todoObject.progress; 
+	todoModal.querySelector("div").style.width = todoObject.progress; 
+
+	return document.importNode(todoModal, true);
 }
 
 function makeEdit(e){
@@ -156,7 +159,7 @@ function makeEdit(e){
 function deleteToDo(e) {
 	// body...
 	var todo = e.parentNode.parentNode.parentNode; 
-	var id = todo.querySelector("todoID").value; 
+	var id = todo.querySelector("#todoID").value; 
 	document.removeChild(todo); 
 	deleteTask(id, function(res){
 		console.log(res); 
