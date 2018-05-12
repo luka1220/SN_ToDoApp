@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>TODOS</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+	</head>
+	<body role="document">
+
+		<header class="container">
+			<div class="page-header">
+				<h1 id="HeaderOfPage">Welcome to TODOs</h1>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="active"><a href="#index">Start</a></li>
+				<li><a href="#demo">Demo</a></li>
+				<li><a href="#add-todo">Add TODO</a></li>
+				<li><a href="#impressum">Impressum</a></li>
+				
+			</ul>
+		</header>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<main>
+						<!-- Tamplate Inhalt-->
+					</main>
+
+
+					<tamplate id="TableModal">
+					<table class="table table-bordered">
+						<thread>
+							<tr>
+								<td colspan="5">
+									<a type="button" class="btn btn-success" href="add-todo.html">add new TODO</a>
+								</td>
+							</tr>
+							<tr>
+								<th>Nr.</th>
+								<th colspan="5">TODOs</th>
+							</tr>
+						</thread>
+						<tbody id="ToDoBody">
+							<div id="ToDoModal">
+							<tr>
+								<td rowspan="2">1.</td>
+								<td colspan="4">blah blah </td>
+							</tr>
+							<tr>
+								<td><time></time></td>
+								<td>
+									<div id="Prozent" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%; color: black"><span class="sr-only">40% abgeschlossen (Erfolg)</span>%40</div>
+								</td>
+								<td><a href="demo.html" class="btn btn-xs btn-warning">Edit</a></td>
+								<td><button class="btn btn-xs btn-danger">Delete</button></td>
+							</tr>
+							</div>
+							<!-- Ein Tamplate-->
+						</tbody>
+					</table>
+				</template>
+
+				<template id="EditModal">
+					<form>
+						<label for="inputText">To edit:</label>
+						<textarea class="form-control" id="inputText"
+						maxlength="160" rows="4" required>Change your TODO here! You can edit everything, good luck!
+						</textarea>
+						<input type="date" name="deadline" value="2018-04-30" required/>
+						<input type="number" name="prozentage" value=20 step="5"
+						max="100" min="0" style="width: 60px" required/>
+						<label for="number">%OMA </label>
+						<input class="btn btn-warning" type="submit" value="Commit"
+						style="float: right" formAction="index.html"/>
+					</form>
+				</template>
+
+				<template id="AddModal">
+					<form action="../api/todo" method="post">
+						<label for="inputText">TODO Discription:</label>
+						<textarea class="form-control" name="content" id="inputText" placeholder="Define your new TODO here"
+						maxlength="160" rows="4" required></textarea>
+						<label for="inputText">Deadline:</label>
+						<input type="date" name="deadline" id="deadline" min required/>
+						<input class="btn btn-success" type="submit" value="Submit"
+						style="float: right" /> <!--formAction="index.html"-->
+					</form>
+				</template>
+
+				<template id="ImpressumModal">
+					<div>
+					<p><br> Contributors: </p>
+					<p><a href="https://github.com/cosmonawt">Leo</a></p>
+					<p><a href="https://github.com/luka1220">Luka</a></p>
+					</div>
+				</template>
+
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery-1.12.4.min.js"></script>
+    	<script src="js/bootstrap.min.js"></script>
+    	<script type="js/handleSPA.js"></script>
+
+	</body>
+</html>
+

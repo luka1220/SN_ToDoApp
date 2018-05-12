@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>addTODO</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+		
+	</head>
+	<body role="document">
+		<header class="container">
+			
+			<div class="page-header">
+				<h1>Add TODO</h1>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li ><a href="index.html">Start</a></li>
+				<li><a href="demo.html">Demo</a></li>
+				<li class="active"><a href="add-todo.html">Add TODO</a></li>
+				<li><a href="impressum.html">Impressum</a></li>
+				
+			</ul>
+		</header>
+		<div class="container">
+			<main class="row">
+				<article class="col-xs-12">
+					
+					<form action="../api/todo" method="post">
+						<label for="inputText">TODO Discription:</label>
+						<textarea class="form-control" name="content" id="inputText" placeholder="Define your new TODO here"
+						maxlength="160" rows="4" required></textarea>
+						<label for="inputText">Deadline:</label>
+						<input type="date" name="deadline" id="deadline" min required/>
+						<input class="btn btn-success" type="submit" value="Submit"
+						style="float: right" /> <!--formAction="index.html"-->
+					</form>
+				</article>
+			</main>
+		</div>
+	</body>
+</html>

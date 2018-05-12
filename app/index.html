@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>TODOS</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+	</head>
+	<body role="document">
+		<header class="container">
+			<div class="page-header">
+				<h1>Welcome to TODOs</h1>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="active"><a href="app/index.html">Start</a></li>
+				<li><a href="demo.html">Demo</a></li>
+				<li><a href="add-todo.html">Add TODO</a></li>
+				<li><a href="impressum.html">Impressum</a></li>
+				
+			</ul>
+		</header>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<table class="table table-bordered">
+						
+						<thread>
+							<tr>
+								<td colspan="5">
+									<a type="button" class="btn btn-success" href="add-todo.html">add new TODO</a>
+								</td>
+							</tr>
+							<tr>
+								<th>Nr.</th>
+								<th colspan="5">TODOs</th>
+							</tr>
+						</thread>
+						<tbody>
+							<tr>
+								<td rowspan="2">1.</td>
+								<td colspan="4">blah blah </td>
+							</tr>
+							<tr>
+								<td><time>26.04.2018</time></td>
+								<td>
+									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%; color: black"><span class="sr-only">40% abgeschlossen (Erfolg)</span>%40</div>
+								</td>
+								<td><a href="demo.html" class="btn btn-xs btn-warning">Edit</a></td>
+								<td><button class="btn btn-xs btn-danger">Delete</button></td>
+							</tr>
+							<tr>
+								<td rowspan="2">2.</td>
+								<td colspan="4">blah blah Computer programs can learn useful cognitive skills. This lecture tries to communicate an intuitive understanding of elementary concepts in machine learning, their historical development</td>
+							</tr>
+							<tr>
+								<td><time>26.04.2018</time></td>
+								<td>
+									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 20%; color: black"><span class="sr-only">20% abgeschlossen (Erfolg)</span>%20</div>
+								</td>
+								<td><a href="demo.html" class="btn btn-xs btn-warning">Edit</a></td>
+								<td><button class="btn btn-xs btn-danger">Delete</button></td>
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

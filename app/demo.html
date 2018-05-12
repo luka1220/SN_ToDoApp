@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>demo</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+		
+	</head>
+	<body role="document">
+		<header class="container">
+			
+			<div class="page-header">
+				<h1>Demo - How to do it!</h1>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li><a href="index.html">Start</a></li>
+				<li class="active"><a href="demo.html">Demo</a></li>
+				<li><a href="add-todo.html">Add TODO</a></li>
+				<li><a href="impressum.html">Impressum</a></li>
+				
+			</ul>
+		</header>
+		<div class="container">
+			<main class="row justify-content-center">
+				<article class="col-xs-12">
+					<form>
+						<label for="inputText">To edit:</label>
+						<textarea class="form-control" id="inputText"
+						maxlength="160" rows="4" required>Change your TODO here! You can edit everything, good luck!
+						</textarea>
+						<input type="date" name="deadline" value="2018-04-30" required/>
+						<input type="number" name="prozentage" value=20 step="5"
+						max="100" min="0" style="width: 60px" required/>
+						<label for="number">%OMA </label>
+						<input class="btn btn-warning" type="submit" value="Commit"
+						style="float: right" formAction="index.html"/>
+					</form>
+				</article>
+			</main>
+		</div>
+	</body>
+</html>
