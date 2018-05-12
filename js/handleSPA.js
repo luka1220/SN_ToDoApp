@@ -118,20 +118,16 @@ function loadAllTodos(){
 
 function createAllTodos(){
 
-	console.log("createAllTodos");
-	//loadAllTodos(); 
-
 	var templateContent = document.getElementById("TableModal").content;
-	console.log(todosList.length); 
-
+	
 	todosList.forEach(function(entry) {
 		
-		templateContent.querySelector("tbody").appendChild(buildToDo(entry)); 
+		templateContent.querySelector("table").appendChild(buildToDo(entry)); 
 	}); 
 	mainArea.appendChild(document.importNode(templateContent, true));
 }
 function buildToDo(todoObject){
-	console.log("buildToDo", todoObject); 
+	//console.log("buildToDo", todoObject); 
 
 	var todoModal = document.getElementById("ToDoModal").content;
 	
@@ -159,8 +155,10 @@ function makeEdit(e){
 function deleteToDo(e) {
 	// body...
 	var todo = e.parentNode.parentNode.parentNode; 
-	var id = todo.querySelector("#todoID").value; 
-	document.removeChild(todo); 
+	var id = todo.querySelector("#todoID").textContent;
+	console.log(id);
+	var table = document.querySelector("#ToDoBody"); 
+	table.removeChild(todo); 
 	deleteTask(id, function(res){
 		console.log(res); 
 	});
@@ -171,7 +169,7 @@ function updateToDoForm() {
 	var formular = document.forms["editToDoF"];
 	var todoObject = {}; 
 
-	todoObject.id = formular.name; 
+	//todoObject.id = formular.name; 
 	todoObject.description = formular.getElementById("inputText").value;
 	todoObject.date = formular.getElementById("deadline").value; 
 	todoObject.progeress = formular.getElementById("progress").value; 
