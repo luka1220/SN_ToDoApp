@@ -142,14 +142,11 @@ function buildToDo(todoObject){
 
 function makeEdit(e){
 	var todo = e.parentNode.parentNode.parentNode; 
-
-	var row1 = todo.firstElementChild.querySelectorAll("td"); 
-	var row2 = todo.lastElementChild.querySelectorAll("td"); 
 	
-	todoA.id = row1[0].textContent;
-	todoA.description = row1[1].textContent;
-	todoA.date = row2[0].querySelector("time").textContent; 
-	todoA.progress = row2[1].firstElementChild.textContent; 
+	todoA.id = todo.querySelector("#todoID").textContent;
+	todoA.description = todo.querySelector("#description").textContent;
+	todoA.date = todo.querySelector("time").textContent; 
+	todoA.progress = todo.querySelector("div").textContent;  
 	console.log(todoA.id, todoA.description, todoA.date, todoA.progress); 
 }
 function deleteToDo(e) {
@@ -166,27 +163,25 @@ function deleteToDo(e) {
 
 function updateToDoForm() {
 	
-	var formular = document.forms["editToDoF"];
 	var todoObject = {}; 
 
-	//todoObject.id = formular.name; 
-	todoObject.description = formular.getElementById("inputText").value;
-	todoObject.date = formular.getElementById("deadline").value; 
-	todoObject.progeress = formular.getElementById("progress").value; 
+	todoObject.id = todoA.id; 
+	todoObject.description = document.getElementById("inputText").value;
+	todoObject.date = document.getElementById("deadline").value; 
+	todoObject.progeress = document.getElementById("progress").value; 
 	todoObject.finished = false; 
 
-	updateTask(todoObject, function(res){
+	updateTask(todo.id, todoObject, function(res){
 		console.log(res); 
 	}); 
 }
 
 function addToDoForm(){
 	
-	var formular = document.forms["addToDoF"];
 	var todoObject = {}; 
 
-	todoObject.content = formular.getElementById("inputText").value;
-	todoObject.date = formular.getElementById("deadline").value; 
+	todoObject.content = document.getElementById("inputText").value;
+	todoObject.date = document.getElementById("deadline").value; 
 	todoObject.progeress = 0; 
 	todoObject.finished = false; 
 
