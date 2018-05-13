@@ -120,18 +120,20 @@ function createAllTodos(){
 
 	var templateContent = document.getElementById("TableModal").content;
 	
+	var i = 0; 
 	todosList.forEach(function(entry) {
-		
-		templateContent.querySelector("table").appendChild(buildToDo(entry)); 
+		i++; 
+		templateContent.querySelector("table").appendChild(buildToDo(entry, i)); 
 	}); 
 	mainArea.appendChild(document.importNode(templateContent, true));
 }
-function buildToDo(todoObject){
+function buildToDo(todoObject, i){
 	//console.log("buildToDo", todoObject); 
 
 	var todoModal = document.getElementById("ToDoModal").content;
 	
-	todoModal.querySelector("#todoID").textContent = todoObject.id;
+	todoModal.querySelector("#todoID").setAttribute("name", todoObject.id); 
+	todoModal.querySelector("#todoID").textContent = i;
 	todoModal.querySelector("#description").textContent = todoObject.description;
 	todoModal.querySelector("time").textContent = todoObject.date;
 	todoModal.querySelector("div").textContent = todoObject.progress; 
@@ -143,7 +145,7 @@ function buildToDo(todoObject){
 function makeEdit(e){
 	var todo = e.parentNode.parentNode.parentNode; 
 	
-	todoA.id = todo.querySelector("#todoID").textContent;
+	todoA.id = todo.querySelector("#todoID").getAttribute("name");
 	todoA.description = todo.querySelector("#description").textContent;
 	todoA.date = todo.querySelector("time").textContent; 
 	todoA.progress = todo.querySelector("div").textContent;  
@@ -152,7 +154,7 @@ function makeEdit(e){
 function deleteToDo(e) {
 	// body...
 	var todo = e.parentNode.parentNode.parentNode; 
-	var id = todo.querySelector("#todoID").textContent;
+	var id = todo.querySelector("#todoID").getAttribute("name");
 	console.log(id);
 	var table = document.querySelector("#ToDoBody"); 
 	table.removeChild(todo); 
@@ -171,7 +173,7 @@ function updateToDoForm() {
 	todoObject.progeress = document.getElementById("progress").value; 
 	todoObject.finished = false; 
 
-	updateTask(todo.id, todoObject, function(res){
+	updateTask(todoA.id, todoObject, function(res){
 		console.log(res); 
 	}); 
 }
