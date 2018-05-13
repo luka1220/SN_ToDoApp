@@ -44,10 +44,10 @@ function insertTemplate(strPage) {
     var templateContent;
 
     var nav = document.querySelector(".nav"); 
-    // Wenn strPage leer, weil kein Hash, dann Willkommen setzen
+    // Wenn strPage leer, weil kein Hash, dann index setzen
     strPage = strPage || "index";
 
-    clearContentArea();
+    clearContentArea(mainArea);
 
     switch (strPage) {
     case "index":
@@ -74,26 +74,21 @@ function insertTemplate(strPage) {
         break;
     default: //anderer Hash
     	$("nav li:nth-child(1)").className = "active";
-        templateContent = document.getElementById("TableModal").content;
         headerOfPage.textContent = "Welcome to TODOs";
-        break;
+        loadAllTodos(); 
+        return;
     }
 
     mainArea.appendChild(document.importNode(templateContent, true));
 }
 
 
-// Entferne alle Elemente aus der Main-Area und den JumboTron-Button
-function clearContentArea() {
-    while (mainArea.hasChildNodes()) {
-        mainArea.removeChild(mainArea.lastChild);
+// Entferne alle Elemente aus der Main-Area
+function clearContentArea(area) {
+    while (area.hasChildNodes()) {
+    	console.log("true Main"); 
+        area.removeChild(area.lastChild);
     }
-
-    //Wenn im Jumbotron ein Button enthalten ist, dann lösche ihn
-    /*var jumboTronButton = jumboTron.getElementsByTagName("button");
-    if (jumboTronButton.length > 0) {
-        jumboTron.removeChild(jumboTronButton[0]);
-    }*/
 }
 
 function setmakeEdit(){
@@ -110,6 +105,7 @@ function loadAllTodos(){
 	getAllTasks(function(res){
 		console.log(typeof res); 
 		todosList = res; 
+		console.log("loaded"); 
 		createAllTodos(); 
 		//console.log(todosList); 
 	});
@@ -119,12 +115,16 @@ function loadAllTodos(){
 function createAllTodos(){
 
 	var templateContent = document.getElementById("TableModal").content;
-	
+	templateContent.querySelectorAll(".classToDo").forEach( function(e){
+		templateContent.querySelector("table").removeChild(e); 
+	}); 
+	console.log(templateContent.querySelectorAll("tbody").length); 
 	var i = 0; 
 	todosList.forEach(function(entry) {
 		i++; 
 		templateContent.querySelector("table").appendChild(buildToDo(entry, i)); 
 	}); 
+
 	mainArea.appendChild(document.importNode(templateContent, true));
 }
 function buildToDo(todoObject, i){
