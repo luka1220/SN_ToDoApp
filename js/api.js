@@ -16,6 +16,8 @@ $(document).ready(() => {
 	}
 
 	insertTask = function(task, cb) {
+		task.description = task.description || "Placeholder"
+		task.date = (task.date && new Date(task.date).toISOString()) || new Date().toISOString();
 		$.ajax({
 			type: "POST",
 			url: `${ENDPOINT}`,
@@ -26,6 +28,7 @@ $(document).ready(() => {
 	}
 
 	updateTask = function(id, task, cb) {
+		task.date = (task.date && new Date(task.date).toISOString()) || new Date().toISOString();
 		$.ajax({
 			type: "PUT",
 			url: `${ENDPOINT}/${id}`,
