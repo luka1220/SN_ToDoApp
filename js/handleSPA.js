@@ -117,7 +117,7 @@ function createAllTodos(){
 	var templateContent = document.getElementById("TableModal").content;
 	templateContent.querySelectorAll(".classToDo").forEach( function(e){
 		templateContent.querySelector("table").removeChild(e); 
-	}); 
+	}); //muss irgendwie auch rausgelöscht werden, i dont understand why
 	console.log(templateContent.querySelectorAll("tbody").length); 
 	var i = 0; 
 	todosList.forEach(function(entry) {
