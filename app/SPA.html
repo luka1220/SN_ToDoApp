@@ -64,7 +64,7 @@
 				</template>
 
 				<template id="EditModal" >
-					<form if="editToDoF" name="0">
+					<form if="editToDoF" action="#index">
 						<label for="inputText">To edit:</label>
 						<textarea class="form-control" id="inputText"
 						maxlength="160" rows="4" required>Change your TODO here! You can edit everything, good luck!
@@ -79,7 +79,7 @@
 				</template>
 
 				<template id="AddModal">
-					<form id="addToDoF">
+					<form id="addToDoF" action="#index">
 						<label for="inputText">TODO Discription:</label>
 						<textarea class="form-control" name="content" id="inputText" placeholder="Define your new TODO here"
 						maxlength="160" rows="4" required></textarea>

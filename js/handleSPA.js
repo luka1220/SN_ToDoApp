@@ -135,9 +135,9 @@ function buildToDo(todoObject, i){
 	todoModal.querySelector("#todoID").setAttribute("name", todoObject.id); 
 	todoModal.querySelector("#todoID").textContent = i;
 	todoModal.querySelector("#description").textContent = todoObject.description;
-	todoModal.querySelector("time").textContent = todoObject.date;
-	todoModal.querySelector("div").textContent = todoObject.progress; 
-	todoModal.querySelector("div").style.width = todoObject.progress; 
+	todoModal.querySelector("time").textContent = todoObject.date.substr(0,10);
+	todoModal.querySelector("div").textContent = todoObject.progress+"%"; 
+	todoModal.querySelector("div").style.width = todoObject.progress+"%"; 
 
 	return document.importNode(todoModal, true);
 }
@@ -170,10 +170,11 @@ function updateToDoForm() {
 	todoObject.id = todoA.id; 
 	todoObject.description = document.getElementById("inputText").value;
 	todoObject.date = document.getElementById("deadline").value; 
-	todoObject.progeress = document.getElementById("progress").value; 
+	todoObject.progress = parseInt(document.getElementById("progress").value); 
 	todoObject.finished = false; 
+	console.log(todoObject); 
 
-	updateTask(todoA.id, todoObject, function(res){
+	updateTask(todoObject.id, todoObject, function(res){
 		console.log(res); 
 	}); 
 }
@@ -182,9 +183,9 @@ function addToDoForm(){
 	
 	var todoObject = {}; 
 
-	todoObject.content = document.getElementById("inputText").value;
+	todoObject.description = document.getElementById("inputText").value;
 	todoObject.date = document.getElementById("deadline").value; 
-	todoObject.progeress = 0; 
+	todoObject.progress = 0; 
 	todoObject.finished = false; 
 
 	insertTask(todoObject, function(res){
