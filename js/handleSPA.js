@@ -148,7 +148,8 @@ function makeEdit(e){
 	todoA.id = todo.querySelector("#todoID").getAttribute("name");
 	todoA.description = todo.querySelector("#description").textContent;
 	todoA.date = todo.querySelector("time").textContent; 
-	todoA.progress = todo.querySelector("div").textContent;  
+	var pro = todo.querySelector("div").textContent; 
+	todoA.progress = parseInt(pro.substr(0, pro.length-1));
 	console.log(todoA.id, todoA.description, todoA.date, todoA.progress); 
 }
 function deleteToDo(e) {
